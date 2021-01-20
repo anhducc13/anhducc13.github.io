@@ -35,6 +35,11 @@ div.controller {
   (function() {
   'use strict';
   window.addEventListener('load', function() {
+    var count = document.getElementById('count');
+    var countBall = count.value;
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      countBall = Math.round(count.value / 2);
+    }
     var canvas = document.getElementById('canvas');
 
     if (!canvas || !canvas.getContext) {
@@ -58,8 +63,6 @@ div.controller {
     var X = canvas.width = window.innerWidth;
     var Y = canvas.height = window.innerHeight;
 
-    var count = document.getElementById('count');
-
     /********************
       Animation
     ********************/
@@ -78,7 +81,7 @@ div.controller {
     ********************/
     
     // var
-    var ballNum = count.value;
+    var ballNum = countBall;
     var balls = [];
      
     function Ball(ctx, x, y) {
